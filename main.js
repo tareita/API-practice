@@ -1,11 +1,16 @@
-const catImage = document.getElementById("catImage");
+const catFact = document.getElementById("catFact");
+const facts = [];
 
-function getCat() {
+function getFact() {
   fetch("https://cat-fact.herokuapp.com/facts/random")
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      catImage.innerHTML = "<div>" + data.text + "</div>";
+      facts.push(data.text);
+      let factsList = "";
+      facts.forEach((fact) => {
+        factsList += fact + "<br>";
+      });
+      catFact.innerHTML = factsList;
     })
     .catch((e) => {
       console.log(e);
